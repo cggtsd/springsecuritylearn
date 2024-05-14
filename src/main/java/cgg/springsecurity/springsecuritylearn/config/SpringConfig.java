@@ -35,14 +35,14 @@ public class SpringConfig {
         .authorizeHttpRequests(authz -> 
         authz
         .requestMatchers("/signin").permitAll()
-        // .requestMatchers("/public/**").hasRole("NORMAL")
-        // .requestMatchers("/users/**").hasRole("ADMIN")
+        // .requestMatchers("/public/**").hasAuthority("ROLE_NORMAL")
+        // .requestMatchers("/users/**").hasAuthority("ROLE_ADMIN")
         .anyRequest().authenticated())
         .formLogin(
             login->
             login.loginPage("/signin")
             .loginProcessingUrl("/doLogin")
-            .defaultSuccessUrl("/users/")
+            .defaultSuccessUrl("/users/",true)
            
             )
             .logout(logout->logout.logoutUrl("/logout").logoutSuccessUrl("/signin?logout"));
@@ -51,16 +51,16 @@ public class SpringConfig {
         return http.build();
 
     }
-    @Bean
-     UserDetailsService userDetailsService(){
+    // @Bean
+    //  UserDetailsService userDetailsService(){
 
         // UserDetails adminUser = User.withUsername("fathima").password(this.passwordEncoder().encode("fathima")).roles("ADMIN").build();
         // UserDetails normalUser = User.withUsername("abc").password(this.passwordEncoder().encode("abc")).roles("NORMAL").build();
 
         // return new InMemoryUserDetailsManager(normalUser,adminUser);
-        return customUserDetailsService;
+    //     return customUserDetailsService;
 
-    }
+    // }
 
     @Bean
     PasswordEncoder passwordEncoder(){

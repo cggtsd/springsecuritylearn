@@ -15,7 +15,7 @@ import cgg.springsecurity.springsecuritylearn.services.UserService;
 
 @RestController
 @RequestMapping("/users")
-@PreAuthorize("hasRole('ADMIN')")
+@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 public class UserController {
     
     private UserService userService;

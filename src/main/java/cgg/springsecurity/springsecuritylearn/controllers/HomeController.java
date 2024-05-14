@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/public")
-@PreAuthorize("hasRole('NORMAL')")
+@PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_NORMAL')")
 public class HomeController {
     
     @GetMapping("/home")
